@@ -1,20 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ItemController!{% endblock %}
+{% block title %}La facture{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello me ! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/1-Tousprojet/kiznetapp/src/Controller/ItemController.php</code></li>
-        <li>Your template at <code>C:/1-Tousprojet/kiznetapp/templates/item/index.html.twig</code></li>
-    </ul>
-</div>
+<div class="container mt-5">
+        <div class="col-lg-6">
+            <a href="{{ url('app_item_create', {'factureId': factureId}) }}" class="btn btn-primary">Ajouter</a>
+        </div>
+        <div class="row justify-content-center">
+        <h1>La  facture</h1>
+            <table class="table table-bordered table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Designation</th>
+                        <th>Quantite </th>
+                        <th>Prix unitaire</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>{{ item.designation }}</td>
+                            <td>{{ item.qte }}</td>
+                            <td>{{ item.prixUnitaire }}</td>
+                            <td>
+                                <a href="" class="btn btn-warning">Modifier</a>
+                                <a href="" class="btn btn-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+       
+    </div>
 {% endblock %}

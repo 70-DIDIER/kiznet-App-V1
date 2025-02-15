@@ -3,11 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>kiznetapp | {% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.css')}}">
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('app_home') }}">Kiznetapp</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('app_home') }}">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('app_facture') }}">Factures</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         {% block body %}{% endblock %}
-
-        <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     </body>
 </html>

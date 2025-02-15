@@ -4,14 +4,16 @@
 
 {% block body %}
     <div class="container mt-5">
+        <a href="{{ url('app_facture_create') }}" class="btn btn-success mb-3">Nouvelle Facture</a>
         <div class="row justify-content-center">
-        <h1>La  facture</h1>
+            <h1>La facture</h1>
             <table class="table table-bordered hover">
                 <thead class="table-primary">
                     <tr>
-                        <th style="width: 20%;">Date</th>
-                        <th style="width: 60%;">Nom du client</th>
-                        <th style="width: 20%;">Action</th>
+                        <th>Date</th>
+                        <th>Nom du client</th>
+                        <th>Actions</th>
+                        <th>Items</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,17 +22,20 @@
                             <td>{{ facture.date|date('d/m/Y') }}</td>
                             <td>{{ facture.nomClient }}</td>
                             <td>
-                                <a href="{{url('app_facture_update', {'id':facture.id}) }}" class="btn btn-warning">Modifier</a>
-                                <a href="{{url('app_facture_delete', {'id':facture.id})}}" class="btn btn-danger">Supprimer</a>
+                                <a href="{{ url('app_facture_update', {'id': facture.id}) }}" class="btn btn-warning">Modifier</a>
+                                <a href="{{ url('app_facture_delete', {'id': facture.id}) }}" class="btn btn-danger">Supprimer</a>
+                            </td>
+                            <td>
+                                <!-- Lien vers la liste des items de cette facture -->
+                                <a href="{{ url('app_item_index', {'factureId': facture.id}) }}" class="btn btn-info">Voir Items</a>
+                                <!-- Lien pour ajouter un item à cette facture -->
+                                <a href="{{ url('app_item_create', {'factureId': facture.id}) }}" class="btn btn-primary">Ajouter Item</a>
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-        <div>
-            <button style="margin-right: 900px;" class="btn btn-primary">Back</button>
-            <button class="btn btn-primary">Suivant</button>
-        </div>
+        <!-- Boutons de pagination si nécessaire -->
     </div>
 {% endblock %}

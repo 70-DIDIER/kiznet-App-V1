@@ -52,8 +52,12 @@ final class FactureController extends AbstractController
 
     #[Route('/facture/{id}/delete', name: 'app_facture_delete')]
     public function delete(Facture $facture, EntityManagerInterface $em): Response{
+        foreach ($facture->getItems() as $item) {
+            $em->remove($item);
+        }
         $em->remove($facture);
         $em->flush();
+    
         return $this->redirectToRoute('app_facture');
     }
 

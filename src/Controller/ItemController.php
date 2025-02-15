@@ -2,18 +2,50 @@
 
 namespace App\Controller;
 
+use App\Entity\Item;
+use App\Entity\Facture;
+use App\Form\ItemType;
+use App\Repository\ItemRepository;
+use App\Repository\FactureRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 
-class ItemController extends AbstractController{
-    #[Route("/item/index", name: "app_item_index")]
-    public function index():Response{
-        return $this->render('item/index.html.twig');
+class ItemController extends AbstractController
+{
+    #[Route('/facture/{factureId}/item/index', name: "app_item_index")]
+    public function index(ItemRepository $repository, int $factureId): Response
+    {
+        $items = $repository->findBy(['facture' => $factureId]);
+        return $this->render('item/index.html.twig', [
+            'items' => $items,
+            'factureId' => $factureId,
+        ]);
     }
-    #[Route("/didier", name: "app_didier")]
-    public function didier(){
-        return "bonjour didier";
+
+    #[Route('/item/create/{factureId}', name: "app_item_create")]
+    public function create(Request $request, EntityManagerInterface $em, FactureRepository $factureRepository, int $factureId): Response {
+        $item = new Item();
+
+        // Récupère la facture à associer
+        $facture = $factureRepository->find($factureId);
+        if (!$facture) {
+            throw $this->createNotFoundException("Facture non trouvée");
+        }
+        $item->setFacture($facture);
+
+        $form = $this->createForm(ItemType::class, $item);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($item);
+            $em->flush();
+            return $this->redirectToRoute('app_item_index', ['factureId' => $factureId]);
+        }
+        return $this->render('item/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
-    
 }
