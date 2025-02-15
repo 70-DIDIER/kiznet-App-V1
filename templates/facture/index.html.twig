@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello FactureController!{% endblock %}
+{% block title %}La facture{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/1-Tousprojet/kiznetapp/src/Controller/FactureController.php</code></li>
-        <li>Your template at <code>C:/1-Tousprojet/kiznetapp/templates/facture/index.html.twig</code></li>
-    </ul>
-</div>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+        <h1>La  facture</h1>
+            <table class="table table-bordered hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th style="width: 20%;">Date</th>
+                        <th style="width: 60%;">Nom du client</th>
+                        <th style="width: 20%;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for facture in factures %}
+                        <tr>
+                            <td>{{ facture.date|date('d/m/Y') }}</td>
+                            <td>{{ facture.nomClient }}</td>
+                            <td>
+                                <a href="{{url('app_facture_update', {'id':facture.id}) }}" class="btn btn-warning">Modifier</a>
+                                <a href="{{url('app_facture_delete', {'id':facture.id})}}" class="btn btn-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <button style="margin-right: 900px;" class="btn btn-primary">Back</button>
+            <button class="btn btn-primary">Suivant</button>
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} la Modification de la facture {% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            {{ form_start(form)}}
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h2>formulaire de modification de la facture ...</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            {{ form_label(form.date) }}
+                            {{ form_widget(form.date, {'attr':{'class':'form-control'}} ) }}
+                            {{ form_errors(form.date) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.nom_client) }}
+                            {{ form_widget(form.nom_client, {'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.nom_client) }}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        {{ form_widget(form.submit , {'attr':{'class':'btn btn-primary'}}) }}
+                    </div>
+                </div>
+            {{ form_end(form)}}
+        </div>
+    </div>
+</div>   
+{% endblock  %}
