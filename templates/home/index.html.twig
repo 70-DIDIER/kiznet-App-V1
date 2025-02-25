@@ -3,8 +3,12 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
-        <h1>Bienvenue sur Kiznetapp</h1>
-        <p>Ceci est la page d'accueil de votre application.</p>
+    <div class="container mt-5 d-flex flex-column min-vh-100">
+        <h1 style="color: rgb(46, 193, 253); text-decoration: underline;">
+            Bienvenue sur Kiznetapp
+        </h1>
+        <p>Gerez de façons simple vos devis et facture</p>
+        <a href="{{ url('app_facture_create') }}" class="btn btn-success mb-3">Nouvelle Facture</a>
+
     </div>
 {% endblock %}

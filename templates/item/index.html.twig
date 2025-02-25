@@ -30,8 +30,8 @@
                         <td>{{ item.prixUnitaire * item.qte }} F CFA</td>
                        
                         <td>
-                            <a href="" class="btn btn-warning">Modifier</a>
-                            <a href="" class="btn btn-danger">Supprimer</a>
+                            <a href="{{ url('app_item_update', {'factureId': factureId, 'id': item.id}) }}" class="btn btn-warning">Modifier</a>
+                            <a href="{{ url('app_item_delete', {'factureId': factureId, 'id': item.id}) }}" class="btn btn-danger">Supprimer</a>
                         </td>
                     </tr>
                 {% endfor %}

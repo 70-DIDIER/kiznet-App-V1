@@ -5,27 +5,67 @@
         <title>kiznetapp | {% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('app_home') }}">Kiznetapp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <body class="d-flex flex-column min-vh-100">
+        <div class="container-fluid barrenav sticky-top bg-secondary bg-light-radial shadow-sm px-5 pe-lg-0">
+            <nav class="navbar navbar-expand-lg bg-secondary navbar-secondary py-3 py-lg-0">
+                <a href="{{ path('app_home') }}" class="navbar-brand">
+                    <img src="{{ asset('images/logo1.png') }}" width="100" height="60" alt="Logo" class="me-2" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('app_home') }}">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('app_facture') }}">Factures</a>
-                        </li>
-                    </ul>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0">
+                        <a href="{{ path('app_home') }}" class="nav-item nav-link active" style="color: rgb(46, 193, 253);">Acceuil</a>
+                        <a href="{{ path('app_facture') }}" class="nav-item nav-link" style="color: rgb(46, 193, 253);">Facture</a>
+                        <a href="#about" class="nav-item nav-link" style="color: rgb(46, 193, 253);">A propos</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        {% block body %}{% endblock %}
+        <footer class="bg-secondary text-white py-4">
+            <div class="container">
+                <div class="row">
+                    <!-- Section : À propos -->
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h5 class="text-uppercase fw-bold" style="color: rgb(46, 193, 253);">À propos</h5>
+                        <p class="small">
+                        <a href="https://kiznetservice.com" style="color: rgb(46, 193, 253);">Kiznet Service</a>  vous accompagne dans l’installation, la maintenance et le support technique de vos réseaux. Forts d’une expertise reconnue, nous proposons des solutions sur mesure pour améliorer votre connectivité.
+                        </p>
+                    </div>
+                    
+                    <!-- Section : Liens utiles -->
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h5 class="text-uppercase fw-bold" style="color: rgb(46, 193, 253);">Liens utiles</h5>
+                        <ul class="list-unstyled small">
+                            <li><a href="{{ path('app_home') }}" class="text-white text-decoration-none">Accueil</a></li>
+                            <li><a href="#" class="text-white text-decoration-none">Services</a></li>
+                            <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+                            <li><a href="#" class="text-white text-decoration-none">Politique de confidentialité</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Section : Contact -->
+                    <div class="col-md-4">
+                        <h5 class="text-uppercase fw-bold" style="color: rgb(46, 193, 253);">Contact</h5>
+                        <p class="small">
+                            Adresse : congo brazzaville, POINTE NOIRE<br>
+                            Téléphone : +(242) 06 931 7477 / 05 537 10 28<br>
+                            Email : christnkounkou@gmail.com
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Ligne de séparation -->
+                <hr class="my-4">
+                
+                <!-- Copyright -->
+                <div class="text-center small">
+                    &copy; 2025 kiznet services. Tous droits réservés. Designed by <a href="www.linkedin.com/in/koffi-didier-guinwogbegno" style="color: rgb(46, 193, 253);">Didier Guin</a>
                 </div>
             </div>
-        </nav>
-        {% block body %}{% endblock %}
+        </footer>
         <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     </body>
 </html>

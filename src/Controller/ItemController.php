@@ -49,5 +49,32 @@ class ItemController extends AbstractController
         ]);
     }
 
-    
+    #[Route('/item/update/{id}', name: "app_item_update")]
+    public function update(Item $item, Request $request, EntityManagerInterface $em): Response {
+        $form = $this->createForm(ItemType::class, $item);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // La relation facture ne change généralement pas lors de l'update
+            $em->flush();
+            // Récupère l'id de la facture associée pour la redirection
+            $factureId = $item->getFacture()->getId();
+            return $this->redirectToRoute('app_item_index', ['factureId' => $factureId]);
+        }
+
+        return $this->render('item/update.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/item/delete/{id}', name: "app_item_delete")]
+    public function delete(Item $item, EntityManagerInterface $em): Response {
+        // Récupère l'id de la facture associée avant la suppression
+        $factureId = $item->getFacture()->getId();
+
+        $em->remove($item);
+        $em->flush();
+
+        return $this->redirectToRoute('app_item_index', ['factureId' => $factureId]);
+    }
 }
