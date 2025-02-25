@@ -4,35 +4,39 @@
 
 {% block body %}
 <div class="container mt-5">
-        <div class="col-lg-6">
-            <a href="{{ url('app_item_create', {'factureId': factureId}) }}" class="btn btn-primary">Ajouter</a>
-        </div>
-        <div class="row justify-content-center">
-        <h1>La  facture</h1>
-            <table class="table table-bordered table-hover">
-                <thead class="table-primary">
-                    <tr>
-                        <th>Designation</th>
-                        <th>Quantite </th>
-                        <th>Prix unitaire</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in items %}
-                        <tr>
-                            <td>{{ item.designation }}</td>
-                            <td>{{ item.qte }}</td>
-                            <td>{{ item.prixUnitaire }}</td>
-                            <td>
-                                <a href="" class="btn btn-warning">Modifier</a>
-                                <a href="" class="btn btn-danger">Supprimer</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-       
+    <div class="col-lg-6">
+        <a href="{{ url('app_item_create', {'factureId': factureId}) }}" class="btn btn-primary">Ajouter</a>
+        <a href="{{ url('app_facture_pdf', {'factureId': factureId}) }}" class="btn btn-success">Télécharger</a>
+
     </div>
+    <div class="row justify-content-center">
+        <h1>La facture</h1>
+        <table class="table table-bordered table-hover">
+            <thead class="table-primary">
+                <tr>
+                    <th>Designation</th>
+                    <th>Quantite</th>
+                    <th>Prix unitaire</th>
+                     <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr>
+                        <td>{{ item.designation }}</td>
+                        <td>{{ item.qte }}</td>
+                        <td>{{ item.prixUnitaire }} F</td>
+                        <td>{{ item.prixUnitaire * item.qte }} F CFA</td>
+                       
+                        <td>
+                            <a href="" class="btn btn-warning">Modifier</a>
+                            <a href="" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>       
+</div>
 {% endblock %}

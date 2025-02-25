@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facture Proforma</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .invoice {
+            background: white;
+            padding: 20px;
+            max-width: 700px;
+            margin: auto;
+            border: 1px solid #ddd;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            max-height: 60px;
+        }
+        .company-info {
+            text-align: right;
+        }
+        h1 {
+            text-align: center;
+            font-size: 18px;
+            text-decoration: underline;
+        }
+        p {
+            margin: 5px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        th, td {
+            padding: 8px;
+        }
+        tfoot td {
+            font-weight: bold;
+        }
+        .total-text {
+            text-align: right;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+        <header>
+            <div class="logo">
+                <img src="http://127.0.0.1:8000/images/logo.jpg" alt="Kiznet Services">
+            </div>
+            <div class="company-info">
+                <h2>KIZNET SERVICES</h2>
+                <p>INSTALLATION INTERNET<br>VENTE DES ÉQUIPEMENTS INFORMATIQUES</p>
+            </div>
+        </header>
+
+        <h1>FACTURE PROFORMA N°{{ facture.id }}</h1>
+        <p><strong>Doit :</strong> {{ facture.nomClient }}</p>
+        <p><strong>Date :</strong> {{ facture.date | date('d/m/Y') }}</p>
+
+        {% set total = 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Désignation</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire</th>
+                    <th>Prix Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    {% set total = total + (item.prixUnitaire * item.qte) %}
+                    <tr>
+                        <td>{{ item.designation }}</td>
+                        <td>{{ item.qte }}</td>
+                        <td>{{ item.prixUnitaire }} F</td>
+                        <td>{{ item.prixUnitaire * item.qte }} F CFA</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total</td>
+                    <td><strong>{{ total }} F CFA</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <p class="total-text">
+            Arrêté la présente facture pro-forma à la somme de : 
+            <strong>{{ total | number_format(0, '.', ' ') }} francs CFA</strong>
+        </p>
+        
+        <p class="signature">Le Responsable</p>
+    </div>
+</body>
+</html>

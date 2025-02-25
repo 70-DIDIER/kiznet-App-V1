@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} la page de moification d'une nouvelle facture {% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            {{ form_start(form)}}
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h2>formulaire de modification de détaille</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            {{ form_label(form.designation) }}
+                            {{ form_widget(form.designation, {'attr':{'class':'form-control'}} ) }}
+                            {{ form_errors(form.designation) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.qte) }}
+                            {{ form_widget(form.qte, {'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.qte) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_label(form.prix_unitaire) }}
+                            {{ form_widget(form.prix_unitaire, {'attr':{'class':'form-control'}}) }}
+                            {{ form_errors(form.prix_unitaire) }}
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        {{ form_widget(form.submit , {'attr':{'class':'btn btn-primary'}}) }}
+                    </div>
+                </div>
+            {{ form_end(form)}}
+        </div>
+    </div>
+</div>   
+{% endblock  %}
