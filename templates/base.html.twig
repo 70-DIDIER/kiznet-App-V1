@@ -3,11 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <title>kiznetapp | {% block title %}{% endblock %}</title>
+        <link rel="icon" type="images/png" href="{{ asset('images/favicon.png') }}">
+                {# le lien des icones fontawesome #}
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css') }}">
     </head>
     <body class="d-flex flex-column min-vh-100">
-        <div class="container-fluid barrenav sticky-top bg-secondary bg-light-radial shadow-sm px-5 pe-lg-0">
-            <nav class="navbar navbar-expand-lg bg-secondary navbar-secondary py-3 py-lg-0">
+        <div class="container-fluid barrenav sticky-top   shadow-sm px-5 pe-lg-0" style="background-color: #45526e">
+            <nav class="navbar navbar-expand-lg  navbar-secondary py-3 py-lg-0">
                 <a href="{{ path('app_home') }}" class="navbar-brand">
                     <img src="{{ asset('images/logo1.png') }}" width="100" height="60" alt="Logo" class="me-2" />
                 </a>
@@ -24,47 +27,124 @@
             </nav>
         </div>
         {% block body %}{% endblock %}
-        <footer class="bg-secondary text-white py-4">
-            <div class="container">
-                <div class="row">
-                    <!-- Section : À propos -->
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <h5 class="text-uppercase fw-bold" style="color: rgb(46, 193, 253);">À propos</h5>
-                        <p class="small">
-                        <a href="https://kiznetservice.com" style="color: rgb(46, 193, 253);">Kiznet Service</a>  vous accompagne dans l’installation, la maintenance et le support technique de vos réseaux. Forts d’une expertise reconnue, nous proposons des solutions sur mesure pour améliorer votre connectivité.
-                        </p>
-                    </div>
-                    
-                    <!-- Section : Liens utiles -->
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <h5 class="text-uppercase fw-bold" style="color: rgb(46, 193, 253);">Liens utiles</h5>
-                        <ul class="list-unstyled small">
-                            <li><a href="{{ path('app_home') }}" class="text-white text-decoration-none">Accueil</a></li>
-                            <li><a href="#" class="text-white text-decoration-none">Services</a></li>
-                            <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
-                            <li><a href="#" class="text-white text-decoration-none">Politique de confidentialité</a></li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Section : Contact -->
-                    <div class="col-md-4">
-                        <h5 class="text-uppercase fw-bold" style="color: rgb(46, 193, 253);">Contact</h5>
-                        <p class="small">
-                            Adresse : congo brazzaville, POINTE NOIRE<br>
-                            Téléphone : +(242) 06 931 7477 / 05 537 10 28<br>
-                            Email : christnkounkou@gmail.com
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Ligne de séparation -->
-                <hr class="my-4">
-                <!-- Copyright -->
-                <div class="text-center small">
-                    &copy; 2025 kiznet services. Tous droits réservés. Designed by <a href="https://www.linkedin.com/in/koffi-didier-guinwogbegno" target="_blank" style="color: rgb(46, 193, 253);">Didier Guin</a>
-                </div>
+        <!-- Remove the container if you want to extend the Footer to full width. -->
+  <!-- Footer -->
+  <footer
+          class="text-center text-lg-start text-white"
+          style="background-color: #45526e"
+          >
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h3 class="text-uppercase mb-4 font-weight-bold">
+           <a href="https://kiznetservice.com" style="color: rgb(46, 193, 253);">KIZNET-SERVICE </a>  
+            </h3>
+            <p>
+              est une entreprise specialiser dans le domaine de télécomunication et ingeniérie logiciel
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>
+            <p>
+              installation camera de vidéo surveillance 
+            </p>
+            <p>
+              création de site web, developpement d'application web et mobile
+            </p>
+            
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          
+
+          <!-- Grid column -->
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+            <p><i class="fas fa-home mr-3"></i> congo brazzaville, POINTE NOIRE</p>
+            <p><i class="fas fa-envelope mr-3"></i> christnkounkou@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> +(242) 06 931 7477 </p>
+            <p><i class="fas fa-print mr-3"></i> + 242 05 537 10 28</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+
+      <hr class="my-3">
+
+      <!-- Section: Copyright -->
+      <section class="p-3 pt-0">
+        <div class="row d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-md-7 col-lg-8 text-center text-md-start">
+            <!-- Copyright -->
+            <div class="p-3">
+                &copy; 2025 kiznet services. Tous droits réservés. Designed by <a href="https://www.linkedin.com/in/koffi-didier-guinwogbegno" target="_blank" style="color: rgb(46, 193, 253);">Didier Guin</a>
+
             </div>
-        </footer>
+            <!-- Copyright -->
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+            <!-- Facebook -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-facebook-f"></i
+              ></a>
+
+            <!-- Twitter -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-linkedin-in"></i></a>
+
+            <!-- Google -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-google"></i
+              ></a>
+
+            <!-- Instagram -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-instagram"></i
+              ></a>
+          </div>
+          <!-- Grid column -->
+        </div>
+      </section>
+      <!-- Section: Copyright -->
+    </div>
+    <!-- Grid container -->
+  </footer>
+  <!-- Footer -->
+<!-- End of .container -->
         <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     </body>
 </html>
